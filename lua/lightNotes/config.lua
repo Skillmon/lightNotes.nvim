@@ -4,7 +4,7 @@ local M = {}
 ---@field global_notes_file_name string The name of the file, that contains the global notes
 ---@field notes_directory string The root path where all notes are stored
 ---@field log_level integer Severity of logs, to see. Higher numbers means less severe messages are logged.
----Set to a number from 1 to 4, where 4 inludes the most logs
+---Set to a number from 1 to 4, where 4 includes the most logs
 ---@field file_extension string The default extension for the notes files, saved to disk. (Defaults to '.txt')
 ---Set this to "md" if you want your notes to be markdown files
 ---@field window Window
