@@ -18,6 +18,23 @@ local function write_buf(note_buffer)
     end)
 end
 
+--- auxiliary, first search through all open buffers whether one already has
+--- 'path' open, if so use that buffer otherwise create a new buffer for path
+---@param path string
+---@return number buf_id
+local function get_buffer(path)
+    for _, id in ipairs(vim.api.nvim_list_bufs()) do
+        if path == vim.api.nvim_buf_get_name(id) then
+            return id
+        end
+    end
+    local id = vim.api.nvim_create_buf(false, false)
+    vim.api.nvim_buf_call(id, function()
+        vim.cmd.edit(path)
+    end)
+    return id
+end
+
 local M = {}
 --- Opens a given note and returs it as a note object.
 --- Also creates auto commands, to ensure the note
@@ -33,10 +50,7 @@ M.Open_note_from_path = function(path)
         logger.Debug("Create new file in path: " .. path)
     end
 
-    local file_buf = vim.api.nvim_create_buf(false, false)
-    vim.api.nvim_buf_call(file_buf, function()
-        vim.cmd.edit(path)
-    end)
+    local file_buf = get_buffer(path)
 
     -- this autocommand is supposed to make sure, the
     -- notes content is always written back to the backing file
