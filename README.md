@@ -108,6 +108,44 @@ As I'm not using every plugin, I cannot support all of them. If you want to add
 additional integrations like for oil.nvim you can add them in the same file
 where the oil integration is and create a pull request.
 
+# Default config
+
+The following shows all config options and their default values (it doesn't make
+sense to copy this entire setup, only use the options for which you want to set
+differing values):
+
+[comment]: # "TODO: find a way to automate this against config.lua"
+
+```lua
+require('lightNotes').config({
+    -- the root path where all notes are stored
+    notes_directory = vim.fs.joinpath(vim.fn.stdpath('data'), 'lightNotes'),
+    -- Severity of logs. Higher numbers mean less severe messages are logged.
+    -- Set in the range from 1 to 4.
+    log_level = 2,
+    -- The file extension to use for logs. Set this to ".md" if you want to use
+    -- markdown.
+    file_extension = ".txt",
+    -- The name of the file that contains the global notes
+    global_notes_file_name = "global_notes",
+    -- whether to restore the cursor position from the last time a note was
+    -- open.
+    restore_cursor = true,
+    -- settings for the floating window
+    window = {
+        -- The width of the window. Numbers <=1 are interpreted as shares of the
+        -- full width of your Nvim, numbers > 1 are interpreted as a maximum of
+        -- columns to use (if your Nvim has fewer columns the maximum is used).
+        width     = 0.8,
+        -- The height of the window. Interpreted in the same way as width.
+        height    = 0.8,
+        -- where to place the title. Viable choices are "center", "left", and
+        -- "right".
+        title_pos = "center"
+    },
+})
+```
+
 # When you should not use this plugin
 Every note in lightNotes, is stored as a regular .txt file in a configurable
 notes directory. However that means these files need to get a name. This name
