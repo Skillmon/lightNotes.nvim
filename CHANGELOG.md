@@ -4,6 +4,13 @@ This changelog adheres to (keepAChangelog)[https://keepachangelog.com/en/1.1.0/]
 ## [Unreleased]
 
 ### Added
+
+#### Option to reset the cursor position
+
+The config now features the option `restore_cursor`, if set true (the default)
+the cursor position is restored to the last position a note was open at (see
+`:h 'quote`).
+
 #### Custom note file extension
 Thanks to users *tomeczku* and *sandman_313* on the nvim subreddit for proposing:
 Added a config entry, allowing the user to specify the extension of the note
