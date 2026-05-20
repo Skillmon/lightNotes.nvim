@@ -23,8 +23,9 @@ end
 ---@param path string
 ---@return number buf_id
 local function get_buffer(path)
+    path = vim.fs.abspath(path)
     for _, id in ipairs(vim.api.nvim_list_bufs()) do
-        if path == vim.api.nvim_buf_get_name(id) then
+        if path == vim.fs.abspath(vim.api.nvim_buf_get_name(id)) then
             return id
         end
     end
