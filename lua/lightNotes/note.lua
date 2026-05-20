@@ -65,7 +65,8 @@ end
 ---@param note Note
 M.Free_note = function(note)
     assert(vim.api.nvim_buf_is_valid(note.buffer))
-    vim.api.nvim_buf_delete(note.buffer, { force = false, unload = false })
+    vim.bo[note.buffer].buflisted = false
+    vim.api.nvim_buf_delete(note.buffer, { force = false, unload = true })
     note.buffer = -1
 end
 
