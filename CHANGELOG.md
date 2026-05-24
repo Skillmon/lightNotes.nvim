@@ -39,13 +39,20 @@ you notes folder:
 > before executing this. Just in case.
 
 ### Fixed
+
+#### Remove internal functions from global namespace
 Thanks to user *badabblubb* on the nvim subreddit for the feedback:
 Converted a bunch of functions, that are only used inside the plugin
 into modules. That way the global functions I have declared no longer
 pollute the user global namespace and will no longer be pollute or even
 override functions defined by the user or nvim.
 
-####
+#### Opening a note for which there's still a buffer
+Notes weren't opened correctly if there was still a buffer for the note files
+(as would happen if you close the floating window via `ZZ` or `:q`).
+See [GH#4](https://github.com/BellCrow/lightNotes.nvim/issues/4).
+
+#### 
 ## [Initial Release]
 ### Added
 - taking global notes
